@@ -15,7 +15,7 @@ class Worker:
       'kollector_predict': f'{bcolors.OKBLUE}Определение коллекторов:{bcolors.ENDC}',      
       'knpef_predict': f'{bcolors.OKBLUE}Определение параметров KNEF и KPEF:{bcolors.ENDC}',      
       'visualize': f'{bcolors.OKBLUE}Построение планшета...{bcolors.ENDC}',      
-      'download': f'{bcolors.OKBLUE}Подготовка результирующего hфайла...{bcolors.ENDC}',
+      'download': f'{bcolors.OKBLUE}Подготовка результирующего файла{bcolors.ENDC}',
   }
 
   def __init__(self, filename):
@@ -98,9 +98,10 @@ class Worker:
                             KPEF_predict = df_view['KNEF (модель)'])
 
   def download(self):
-    print(self.__class__.messages['download'])
+    print(self.__class__.messages['download'], end=' ')
     self.result.to_excel("result.xlsx")
-    files.download(filename='result.xlsx')       # Скачивание готового архива
+    files.download(filename='result.xlsx')
+    print(self.__class__.messages['done'])
 
 
   def get_accuracy(self):
