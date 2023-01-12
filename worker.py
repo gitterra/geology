@@ -1,3 +1,4 @@
+from google.colab import files
 from .tools import bcolors, Metrics
 from .loader import CsvLoader, XlsxLoader
 from .terra import TerraDataset, TerraModelKol, TerraModelKNPEF, TerraModelKNPEF
@@ -14,6 +15,7 @@ class Worker:
       'kollector_predict': f'{bcolors.OKBLUE}Определение коллекторов:{bcolors.ENDC}',      
       'knpef_predict': f'{bcolors.OKBLUE}Определение параметров KNEF и KPEF:{bcolors.ENDC}',      
       'visualize': f'{bcolors.OKBLUE}Построение планшета...{bcolors.ENDC}',      
+      'download': f'{bcolors.OKBLUE}Подготовка результирующего hфайла...{bcolors.ENDC}',
   }
 
   def __init__(self, filename):
@@ -38,6 +40,7 @@ class Worker:
         model_path='geology/models/model_knef_w.h5'
     )
     self.knpef_predict()
+    self.download()
 
 
   
@@ -93,6 +96,12 @@ class Worker:
                             collector_predict = df_view['Коллекторы (модель)'],
                             KNEF_predict = df_view['KPEF (модель)'],
                             KPEF_predict = df_view['KNEF (модель)'])
+
+  def download(self):
+    print(self.__class__.messages['download'])
+    self.result.to_excel("result.xlsx")
+    files.download(filename='result.xlsx')       # Скачивание готового архива
+
 
   def get_accuracy(self):
     if 'Коллекторы' in self.result.columns:
