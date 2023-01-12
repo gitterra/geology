@@ -21,6 +21,7 @@ class Worker:
   def __init__(self, filename):
     self.loader = None # Загрузчик данных
     self.x_set = None
+    self.fname = filename
     self.load_data(filename)
     self.create_sets()
 
@@ -100,7 +101,7 @@ class Worker:
   def download(self):
     print(self.__class__.messages['download'], end=' ')
     self.result.to_excel("result.xlsx")
-    files.download(filename='result.xlsx')
+    files.download(filename=f'{self.fname}.split('.')[:-1]}_predict.xlsx')
     print(self.__class__.messages['done'])
 
 
