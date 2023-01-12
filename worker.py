@@ -15,7 +15,7 @@ class Worker:
       'kollector_predict': f'{bcolors.OKBLUE}Определение коллекторов:{bcolors.ENDC}',      
       'knpef_predict': f'{bcolors.OKBLUE}Определение параметров KNEF и KPEF:{bcolors.ENDC}',      
       'visualize': f'{bcolors.OKBLUE}Построение планшета...{bcolors.ENDC}',      
-      'download': f'{bcolors.OKBLUE}Подготовка результирующего файла{bcolors.ENDC}',
+      'download': f'{bcolors.OKBLUE}Подготовка результирующего файла:{bcolors.ENDC}',
   }
 
   def __init__(self, filename):
