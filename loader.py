@@ -50,4 +50,5 @@ class XlsxLoader(Loader):
     if 'KPEF' in self._df.columns:
       if self._df['KPEF'].values.max()>1:
         self._df['KPEF'] = self._df['KPEF'].values/100
+    self._df.dropna(axis=0, inplace=True)
     print(f'{bcolors.OKGREEN}{bcolors.BOLD}Done{bcolors.ENDC}')
