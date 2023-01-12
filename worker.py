@@ -100,7 +100,7 @@ class Worker:
 
   def download(self):
     print(self.__class__.messages['download'], end=' ')
-    self.result.to_excel("result.xlsx")
+    self.result.to_excel(f'{self.fname.split(".")[:-1][0]}_predict.xlsx')
     files.download(filename=f'{self.fname.split(".")[:-1][0]}_predict.xlsx')
     print(self.__class__.messages['done'])
 
